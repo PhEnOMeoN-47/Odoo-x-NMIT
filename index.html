@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoFinds - Sustainable Second-Hand Marketplace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .hero-bg {
+      background-color: #F1F8E8;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+  <div id="app" class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
+      <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center">
+            <span class="text-2xl font-bold text-green-700">🌿 EcoFinds</span>
+          </div>
+          <div class="hidden md:flex flex-1 mx-8 max-w-lg">
+            <div class="relative w-full">
+              <input type="search" id="search-bar" class="w-full border border-stone-300 bg-stone-100 rounded-full py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Search for items...">
+              <svg class="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-stone-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div id="logged-out-nav" class="flex items-center space-x-2">
+              <button id="login-btn" class="text-sm font-medium text-stone-600 hover:text-green-600">Login</button>
+              <button id="signup-btn" class="text-sm font-medium bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors">Sign Up</button>
+            </div>
+            <div id="logged-in-nav" class="hidden items-center space-x-4">
+              <a href="#" class="text-sm font-medium text-stone-600 hover:text-green-600">Home</a>
+              <a href="#" class="text-sm font-medium text-stone-600 hover:text-green-600">My Profile</a>
+              <a href="#" class="text-sm font-medium text-stone-600 hover:text-green-600">My Orders</a>
+              <button class="text-sm font-medium bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors">Sell an Item</button>
+              <button id="logout-btn" class="text-sm font-medium text-stone-600 hover:text-green-600">Logout</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center py-12 hero-bg rounded-xl mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-green-800">Give Your Things a Second Life</h1>
+        <p class="mt-4 text-lg text-stone-600 max-w-2xl mx-auto">Join our community to buy and sell unique pre-owned goods. Good for your wallet, great for the planet.</p>
+      </div>
+
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Discover Pre-Loved Treasures</h2>
+        <div class="flex flex-col md:flex-row gap-8">
+          <aside class="w-full md:w-1/4 lg:w-1/5">
+            <h3 class="text-lg font-semibold mb-4">Categories</h3>
+            <div id="category-filters" class="flex flex-wrap md:flex-col gap-2">
+              <button data-category="all" class="category-btn w-full text-left bg-green-100 text-green-800 font-semibold px-4 py-2 rounded-lg text-sm">All Items</button>
+              <button data-category="electronics" class="category-btn w-full text-left hover:bg-stone-100 px-4 py-2 rounded-lg text-sm">Electronics</button>
+              <button data-category="furniture" class="category-btn w-full text-left hover:bg-stone-100 px-4 py-2 rounded-lg text-sm">Furniture</button>
+              <button data-category="clothing" class="category-btn w-full text-left hover:bg-stone-100 px-4 py-2 rounded-lg text-sm">Clothing</button>
+              <button data-category="books" class="category-btn w-full text-left hover:bg-stone-100 px-4 py-2 rounded-lg text-sm">Books</button>
+              <button data-category="home" class="category-btn w-full text-left hover:bg-stone-100 px-4 py-2 rounded-lg text-sm">Home Goods</button>
+            </div>
+          </aside>
+
+          <div id="product-grid" class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <footer class="bg-white mt-12 border-t">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-stone-500">
+        <p>&copy; 2025 EcoFinds. All Rights Reserved. Helping build a sustainable future, one item at a time.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="auth-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0">
+      <button id="close-modal-btn" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600">
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <h2 class="text-2xl font-bold text-center mb-6 text-green-700">Welcome to EcoFinds</h2>
+      <form id="auth-form">
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-stone-600 mb-1">Email</label>
+          <input type="email" id="email" class="w-full border border-stone-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="you@example.com" required>
+        </div>
+        <div class="mb-6">
+          <label for="password" class="block text-sm font-medium text-stone-600 mb-1">Password</label>
+          <input type="password" id="password" class="w-full border border-stone-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition-colors">Sign In / Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+     <script src="app.js"></script>
+</body>
+</html>
