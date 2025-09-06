@@ -38,45 +38,41 @@
   </footer>
 
   <script>
-    const productList = document.getElementById("product-list");
+  const productList = document.getElementById("product-list");
 
-    // Get products from LocalStorage
-    const products = JSON.parse(localStorage.getItem("products")) || [];
+  // Get products from LocalStorage
+  const products = JSON.parse(localStorage.getItem("products")) || [];
 
-    if(products.length === 0){
-      productList.innerHTML = '<p class="no-products">No available products.</p>';
-    }if(products.length === 0){
-  productList.innerHTML = '<p class="no-products">No available products.</p>';
-} else {
-  products.forEach((product, index) => {
-    const card = document.createElement("div");
-    card.classList.add("product-card");
+  if (products.length === 0) {
+    productList.innerHTML = '<p class="no-products">No available products.</p>';
+  } else {
+    products.forEach((product, index) => {
+      const card = document.createElement("div");
+      card.classList.add("product-card");
 
-    card.innerHTML = `
-      ${product.image ? `<img src="${product.image}" alt="${product.name}" style="width:100%; border-radius:10px; margin-bottom:10px;">` : ""}
-      <h3>${product.name}</h3>
-      <p><strong>Description:</strong> ${product.description}</p>
-      <p><strong>Price:</strong> ₹${product.price}</p>
-      <p><strong>Category:</strong> ${product.category}</p>
-      <p><strong>Trade Option:</strong> ${product.trade}</p>
-      <p><strong>Seller:</strong> ${product.seller}</p>
-      <button class="purchase-btn">Purchase</button>
-    `;
+      card.innerHTML = `
+        ${product.image ? `<img src="${product.image}" alt="${product.name}" style="width:100%; border-radius:10px; margin-bottom:10px;">` : ""}
+        <h3>${product.name}</h3>
+        <p><strong>Description:</strong> ${product.description}</p>
+        <p><strong>Price:</strong> ₹${product.price}</p>
+        <p><strong>Category:</strong> ${product.category}</p>
+        <p><strong>Trade Option:</strong> ${product.trade}</p>
+        <p><strong>Seller:</strong> ${product.seller}</p>
+        <button class="view-btn" data-index="${index}">View Details</button>
+      `;
 
-    // Purchase button click handler
-    const btn = card.querySelector(".purchase-btn");
-    btn.addEventListener("click", () => {
-      let purchases = JSON.parse(localStorage.getItem("purchases")) || [];
-      purchases.push(product);
-      localStorage.setItem("purchases", JSON.stringify(purchases));
-      alert(`✅ You purchased "${product.name}"!`);
+      productList.appendChild(card);
     });
 
-    productList.appendChild(card);
-  });
-}
+    // Handle "View Details" clicks
+    productList.addEventListener("click", (e) => {
+      if (e.target.classList.contains("view-btn")) {
+        const index = e.target.getAttribute("data-index");
+        window.location.href = `product-detail.html?index=${index}`;
+      }
+    });
+  }
+</script>
 
-  </script>
-  <script src="js/main.js"></script>
 </body>
 </html>

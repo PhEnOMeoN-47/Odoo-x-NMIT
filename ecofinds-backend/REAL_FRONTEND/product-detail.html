@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+    .product { border: 1px solid #ccc; padding: 20px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <div id="product-detail" class="product"></div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const productIndex = urlParams.get("index");
+
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+    const product = products[productIndex];
+
+    if (product) {
+      document.getElementById("product-detail").innerHTML = `
+        ${product.image ? `<img src="${product.image}" alt="${product.name}" style="width:200px; display:block; margin-bottom:10px;">` : ""}
+        <h2>${product.name}</h2>
+        <p><strong>Description:</strong> ${product.description}</p>
+        <p><strong>Price:</strong> ₹${product.price}</p>
+        <p><strong>Category:</strong> ${product.category}</p>
+        <p><strong>Trade Option:</strong> ${product.trade}</p>
+        <p><strong>Seller:</strong> ${product.seller}</p>
+        <button id="buy-now">Buy Now</button>
+      `;
+
+      // Buy Now handler
+     document.getElementById("buy-now").addEventListener("click", () => {
+  // Save selected product temporarily for checkout
+  localStorage.setItem("checkoutProduct", JSON.stringify(product));
+  // Redirect to payment page
+  window.location.href = "payment.html";
+});
+
+    }
+  </script>
+</body>
+</html>
