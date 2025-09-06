@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy on EcoFinds</title>
+  <link rel="stylesheet" href="buy.css">
+  <style>
+    /* Quick styling for demonstration */
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header, footer { background: #2e7d32; color: white; padding: 10px 20px; }
+    nav a { color: white; margin-right: 15px; text-decoration: none; }
+    main { padding: 20px; }
+    .product-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
+    .no-products { font-style: italic; color: gray; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="logo">🌿 EcoFinds</h1>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="buy.html" class="active">Buy</a>
+      <a href="sell.html">Sell</a>
+       <a href="mypurchases.html">My Purchases</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Available Products</h2>
+    <div id="product-list"></div>
+  </main>
+
+  <footer>
+    <p>🌿 EcoFinds &copy; 2025 | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    const productList = document.getElementById("product-list");
+
+    // Get products from LocalStorage
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+
+    if(products.length === 0){
+      productList.innerHTML = '<p class="no-products">No available products.</p>';
+    }if(products.length === 0){
+  productList.innerHTML = '<p class="no-products">No available products.</p>';
+} else {
+  products.forEach((product, index) => {
+    const card = document.createElement("div");
+    card.classList.add("product-card");
+
+    card.innerHTML = `
+      ${product.image ? `<img src="${product.image}" alt="${product.name}" style="width:100%; border-radius:10px; margin-bottom:10px;">` : ""}
+      <h3>${product.name}</h3>
+      <p><strong>Description:</strong> ${product.description}</p>
+      <p><strong>Price:</strong> ₹${product.price}</p>
+      <p><strong>Category:</strong> ${product.category}</p>
+      <p><strong>Trade Option:</strong> ${product.trade}</p>
+      <p><strong>Seller:</strong> ${product.seller}</p>
+      <button class="purchase-btn">Purchase</button>
+    `;
+
+    // Purchase button click handler
+    const btn = card.querySelector(".purchase-btn");
+    btn.addEventListener("click", () => {
+      let purchases = JSON.parse(localStorage.getItem("purchases")) || [];
+      purchases.push(product);
+      localStorage.setItem("purchases", JSON.stringify(purchases));
+      alert(`✅ You purchased "${product.name}"!`);
+    });
+
+    productList.appendChild(card);
+  });
+}
+
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>

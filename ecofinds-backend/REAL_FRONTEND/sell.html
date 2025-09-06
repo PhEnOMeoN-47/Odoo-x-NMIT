@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sell on EcoFinds (LocalStorage)</title>
+  <link rel="stylesheet" href="sell.css">
+</head>
+<body>
+  <header>
+    <h1 class="logo">🌿 EcoFinds</h1>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="buy.html">Buy</a>
+      <a href="sell.html" class="active">Sell</a>
+       <a href="mypurchases.html">My Purchases</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sell-form-section">
+      <h2>Sell / Trade Your Product</h2>
+      <form class="sell-form">
+        <label for="name">Product Name</label>
+        <input type="text" id="name" placeholder="Enter product name" required>
+
+        <label for="description">Product Description</label>
+        <textarea id="description" rows="4" placeholder="Describe your product..." required></textarea>
+
+        <label for="price">Price (₹)</label>
+        <input type="number" id="price" placeholder="Enter price" required>
+
+        <label for="category">Category</label>
+        <select id="category" required>
+          <option value="">-- Select Category --</option>
+          <option value="electronics">Electronics</option>
+          <option value="furniture">Furniture</option>
+          <option value="clothing">Clothing</option>
+          <option value="books">Books</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="trade">Trade Option</label>
+        <select id="trade">
+          <option value="no">No Trade</option>
+          <option value="yes">Available for Trade</option>
+        </select>
+
+        <button type="submit" class="submit-btn">Post Product</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>🌿 EcoFinds &copy; 2025 | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    const sellForm = document.querySelector(".sell-form");
+
+    sellForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const product = {
+        name: document.getElementById("name").value.trim(),
+        description: document.getElementById("description").value.trim(),
+        price: Number(document.getElementById("price").value),
+        category: document.getElementById("category").value,
+        trade: document.getElementById("trade").value,
+        seller: localStorage.getItem("username") || "Anonymous"
+      };
+
+      if(!product.name || !product.description || !product.price || !product.category){
+        alert("Please fill all required fields.");
+        return;
+      }
+
+      // Get existing products from LocalStorage
+      let products = JSON.parse(localStorage.getItem("products")) || [];
+
+      // Add new product
+      products.push(product);
+
+      // Save back to LocalStorage
+      localStorage.setItem("products", JSON.stringify(products));
+
+      alert("✅ Product Posted Successfully! (Saved Locally)");
+      sellForm.reset();
+    });
+  </script>
+  <script type="module" src="sell.js"></script>
+</body>
+</html>
+
+
+
+   
