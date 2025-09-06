@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sell on EcoFinds</title>
+  <title>Sell on EcoFinds (LocalStorage)</title>
   <link rel="stylesheet" href="sell.css">
 </head>
 <body>
@@ -22,19 +22,15 @@
     <section class="sell-form-section">
       <h2>Sell / Trade Your Product</h2>
       <form class="sell-form">
-        <!-- Product Name -->
         <label for="name">Product Name</label>
         <input type="text" id="name" placeholder="Enter product name" required>
 
-        <!-- Product Description -->
         <label for="description">Product Description</label>
         <textarea id="description" rows="4" placeholder="Describe your product..." required></textarea>
 
-        <!-- Price -->
         <label for="price">Price (₹)</label>
         <input type="number" id="price" placeholder="Enter price" required>
 
-        <!-- Category -->
         <label for="category">Category</label>
         <select id="category" required>
           <option value="">-- Select Category --</option>
@@ -45,22 +41,53 @@
           <option value="other">Other</option>
         </select>
 
-        <!-- Bill (optional) -->
-        <label for="bill">Bill (optional)</label>
-        <input type="file" id="bill" accept=".jpg,.jpeg,.png,.pdf">
-
-        <!-- Trade Option -->
         <label for="trade">Trade Option</label>
         <select id="trade">
           <option value="no">No Trade</option>
           <option value="yes">Available for Trade</option>
         </select>
 
-        <!-- Submit Button -->
         <button type="submit" class="submit-btn">Post Product</button>
       </form>
     </section>
   </main>
 
   <footer>
-    <p>
+    <p>🌿 EcoFinds &copy; 2025 | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    const sellForm = document.querySelector(".sell-form");
+
+    sellForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const product = {
+        name: document.getElementById("name").value.trim(),
+        description: document.getElementById("description").value.trim(),
+        price: Number(document.getElementById("price").value),
+        category: document.getElementById("category").value,
+        trade: document.getElementById("trade").value,
+        seller: localStorage.getItem("username") || "Anonymous"
+      };
+
+      if(!product.name || !product.description || !product.price || !product.category){
+        alert("Please fill all required fields.");
+        return;
+      }
+
+      // Get existing products from LocalStorage
+      let products = JSON.parse(localStorage.getItem("products")) || [];
+
+      // Add new product
+      products.push(product);
+
+      // Save back to LocalStorage
+      localStorage.setItem("products", JSON.stringify(products));
+
+      alert("✅ Product Posted Successfully! (Saved Locally)");
+      sellForm.reset();
+    });
+  </script>
+</body>
+</html>
