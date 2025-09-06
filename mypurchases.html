@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Purchases | EcoFinds</title>
+  <link rel="stylesheet" href="buy.css">
+</head>
+<body>
+  <header>
+    <h1 class="logo">🌿 EcoFinds</h1>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="buy.html">Buy</a>
+      <a href="sell.html">Sell</a>
+      <a href="mypurchases.html" class="active">My Purchases</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>My Purchases</h2>
+    <div id="purchases-list"></div>
+  </main>
+
+  <footer>
+    <p>🌿 EcoFinds &copy; 2025 | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    const purchasesList = document.getElementById("purchases-list");
+
+    const purchases = JSON.parse(localStorage.getItem("purchases")) || [];
+
+    if(purchases.length === 0){
+      purchasesList.innerHTML = '<p class="no-products">You have not purchased anything yet.</p>';
+    } else {
+      purchases.forEach((product) => {
+        const card = document.createElement("div");
+        card.classList.add("product-card");
+
+        // Create the image HTML string conditionally
+        const imageHtml = product.image ? `<img src="${product.image}" alt="${product.name}" style="width:100%; border-radius:10px; margin-bottom:10px;">` : "";
+
+        card.innerHTML = `
+          ${imageHtml}
+          <h3>${product.name}</h3>
+          <p><strong>Description:</strong> ${product.description}</p>
+          <p><strong>Price:</strong> ₹${product.price}</p>
+          <p><strong>Category:</strong> ${product.category}</p>
+          <p><strong>Trade Option:</strong> ${product.trade}</p>
+          <p><strong>Seller:</strong> ${product.seller}</p>
+        `;
+        purchasesList.appendChild(card);
+      });
+    }
+</script>
+</body>
+</html>
