@@ -1,142 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Checkout</title>
-    <!-- Use Tailwind CSS for professional and responsive styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F0FDF4; /* Light greenish background */
-        }
-        .green-gradient-bg {
-            background: linear-gradient(135deg, #059669, #10B981);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoFinds - Secure Checkout</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; background: #f0fdf4; }
+    .green-gradient-bg { background: linear-gradient(135deg, #059669, #10B981); }
+    .fade-in { animation: fadeIn 0.4s ease-in-out; }
+    @keyframes fadeIn { from {opacity:0; transform:scale(0.95);} to {opacity:1; transform:scale(1);} }
+  </style>
 </head>
-<body class="flex items-center justify-center min-h-screen py-10">
-    <!-- Main Payment Form Container -->
-    <div class="w-full max-w-lg p-8 bg-white rounded-3xl shadow-2xl border-t-8 border-emerald-600">
-        <div class="flex flex-col items-center mb-6">
-            <svg class="w-16 h-16 text-emerald-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-8a1 1 0 112 0v4a1 1 0 11-2 0v-4z" clip-rule="evenodd" />
-                <path fill-rule="evenodd" d="M10 14a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                <path fill-rule="evenodd" d="M10 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                <path fill-rule="evenodd" d="M10 12a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                <path d="M10 20a10 10 0 100-20 10 10 0 000 20zM8 10a1 1 0 112 0v4a1 1 0 11-2 0v-4z" />
-            </svg>
-            <h1 class="text-3xl font-bold text-gray-800">Secure Checkout</h1>
-            <p class="text-sm text-gray-500 mt-2">Enter your payment details below.</p>
-        </div>
+<body class="flex items-center justify-center min-h-screen p-6">
 
-        <!-- Payment Form -->
-        <form id="payment-form" class="space-y-6">
-            <!-- Card Number -->
-            <div>
-                <label for="cardNumber" class="block text-sm font-medium text-gray-700">Card Number</label>
-                <input type="text" id="cardNumber" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 transition duration-200" required>
-            </div>
-
-            <div class="flex space-x-4">
-                <!-- Expiration Date -->
-                <div class="w-1/2">
-                    <label for="expiryDate" class="block text-sm font-medium text-gray-700">Expiry Date</label>
-                    <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 transition duration-200" required>
-                </div>
-                <!-- CVV -->
-                <div class="w-1/2">
-                    <label for="cvv" class="block text-sm font-medium text-gray-700">CVV</label>
-                    <input type="text" id="cvv" name="cvv" placeholder="123" class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 transition duration-200" required>
-                </div>
-            </div>
-
-            <!-- Cardholder Name -->
-            <div>
-                <label for="cardholderName" class="block text-sm font-medium text-gray-700">Cardholder Name</label>
-                <input type="text" id="cardholderName" name="cardholderName" placeholder="John Doe" class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 transition duration-200" required>
-            </div>
-
-            <!-- Pay Now Button -->
-            <button type="submit" class="w-full py-3 px-4 green-gradient-bg text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-                Pay Now
-            </button>
-        </form>
+  <!-- Payment Card -->
+  <div class="w-full max-w-lg p-8 bg-white rounded-3xl shadow-2xl border-t-8 border-emerald-600 fade-in">
+    <div class="text-center mb-6">
+      <svg class="w-14 h-14 text-emerald-600 mx-auto mb-3" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 20a10 10 0 100-20 10 10 0 000 20zM9 5a1 1 0 112 0v6a1 1 0 01-2 0V5zm1 8a1.25 1.25 0 100 2.5A1.25 1.25 0 0010 13z"/>
+      </svg>
+      <h1 class="text-3xl font-bold text-gray-800">Secure Checkout</h1>
+      <p class="text-gray-500 text-sm mt-1">Complete your payment to finish the purchase.</p>
     </div>
 
-    <!-- Success/Error Message Modal -->
-    <div id="message-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4">
-        <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-center">
-            <svg id="modal-icon" class="w-20 h-20 mx-auto mb-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
-                <!-- Success icon -->
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            <h3 id="modal-title" class="text-2xl font-bold text-gray-800 mb-2">Payment Successful!</h3>
-            <p id="modal-text" class="text-gray-600 mb-6">Thank you for your purchase.</p>
-            <button id="close-modal" class="py-2 px-6 green-gradient-bg text-white font-semibold rounded-lg hover:shadow-lg focus:outline-none">
-                Close
-            </button>
+    <!-- Payment Form -->
+    <form id="payment-form" class="space-y-5">
+      <div>
+        <label for="cardNumber" class="block text-sm font-medium text-gray-700">Card Number</label>
+        <input type="text" id="cardNumber" placeholder="xxxx xxxx xxxx xxxx" 
+          class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl shadow-sm focus:ring-emerald-500 focus:border-emerald-500" required>
+      </div>
+
+      <div class="flex space-x-4">
+        <div class="w-1/2">
+          <label for="expiryDate" class="block text-sm font-medium text-gray-700">Expiry Date</label>
+          <input type="text" id="expiryDate" placeholder="MM/YY" 
+            class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl rounded-md focus:ring-emerald-500 focus:border-emerald-500" required>
         </div>
+        <div class="w-1/2">
+          <label for="cvv" class="block text-sm font-medium text-gray-700">CVV</label>
+          <input type="text" id="cvv" placeholder="123" 
+            class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:ring-emerald-500 focus:border-emerald-500" required>
+        </div>
+      </div>
+
+      <div>
+        <label for="cardholderName" class="block text-sm font-medium text-gray-700">Cardholder Name</label>
+        <input type="text" id="cardholderName" placeholder="John Doe" 
+          class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl shadow-sm focus:ring-emerald-500 focus:border-emerald-500" required>
+      </div>
+
+      <button type="submit"
+        class="w-full py-3 px-4 green-gradient-bg text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+        Pay Now
+      </button>
+    </form>
+  </div>
+
+  <!-- Modal -->
+  <div id="message-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-center fade-in">
+      <div id="modal-icon" class="mb-4"></div>
+      <h3 id="modal-title" class="text-2xl font-bold text-gray-800 mb-2"></h3>
+      <p id="modal-text" class="text-gray-600 mb-6"></p>
+      <p id="redirect-text" class="text-sm text-gray-400 italic"></p>
     </div>
+  </div>
 
-    <script>
-        document.getElementById('payment-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from actually submitting
-            
-            // Get the modal and its content elements
-            const modal = document.getElementById('message-modal');
-            const modalIcon = document.getElementById('modal-icon');
-            const modalTitle = document.getElementById('modal-title');
-            const modalText = document.getElementById('modal-text');
+  <script>
+    document.getElementById("payment-form").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-            // Simulate a successful payment
-            const isSuccess = true; // In a real app, this would be a response from a server
+      const modal = document.getElementById("message-modal");
+      const modalIcon = document.getElementById("modal-icon");
+      const modalTitle = document.getElementById("modal-title");
+      const modalText = document.getElementById("modal-text");
+      const redirectText = document.getElementById("redirect-text");
 
-            if (isSuccess) {
-  const product = JSON.parse(localStorage.getItem("checkoutProduct"));
+      const isSuccess = true; // simulate success
 
-  if (product) {
-    // Save to purchases
-    let purchases = JSON.parse(localStorage.getItem("purchases")) || [];
-    purchases.push(product);
-    localStorage.setItem("purchases", JSON.stringify(purchases));
+      if (isSuccess) {
+        // Save purchase & remove from products
+        const product = JSON.parse(localStorage.getItem("checkoutProduct"));
+        if (product) {
+          let purchases = JSON.parse(localStorage.getItem("purchases")) || [];
+          purchases.push(product);
+          localStorage.setItem("purchases", JSON.stringify(purchases));
 
-    // Remove from available products
-    let products = JSON.parse(localStorage.getItem("products")) || [];
-    products = products.filter(p => p.name !== product.name || p.description !== product.description);
-    localStorage.setItem("products", JSON.stringify(products));
+          let products = JSON.parse(localStorage.getItem("products")) || [];
+          products = products.filter(p => p.name !== product.name || p.description !== product.description);
+          localStorage.setItem("products", JSON.stringify(products));
 
-    // Cleanup checkout product
-    localStorage.removeItem("checkoutProduct");
-  }
+          localStorage.removeItem("checkoutProduct");
+        }
 
-  modalTitle.textContent = "Payment Successful!";
-  modalText.textContent = "Thank you for your purchase.";
-
-  setTimeout(() => {
-    window.location.href = "mypurchases.html";
-  }, 2000);
-}
-
- else {
-                // Set error message
-                modalIcon.innerHTML = `<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />`;
-                modalIcon.classList.remove('text-emerald-500');
-                modalIcon.classList.add('text-red-500');
-                modalTitle.textContent = 'Payment Failed';
-                modalText.textContent = 'Please check your card details and try again.';
-            }
-            
-            // Show the modal
-            modal.classList.remove('hidden');
-        });
-
-        // Close the modal when the "Close" button is clicked
-        document.getElementById('close-modal').addEventListener('click', function() {
-            document.getElementById('message-modal').classList.add('hidden');
-        });
-    </script>
+        modalIcon.innerHTML = `<svg class="w-20 h-20 mx-auto text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>`;
+        modalTitle.textContent = "Payment Successful!";
+        modalText.textContent = "Thank you for your purchase 🌱";
+        redirectText.textContent = "Redirecting you to My Purchases...";
+        
+        modal.classList.remove("hidden");
+        setTimeout(() => { window.location.href = "mypurchases.html"; }, 2500);
+      } else {
+        modalIcon.innerHTML = `<svg class="w-20 h-20 mx-auto text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>`;
+        modalTitle.textContent = "Payment Failed";
+        modalText.textContent = "Please check your card details and try again.";
+        redirectText.textContent = "";
+        modal.classList.remove("hidden");
+      }
+    });
+  </script>
 </body>
 </html>
