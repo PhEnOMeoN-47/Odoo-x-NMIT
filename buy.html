@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy on EcoFinds</title>
+  <link rel="stylesheet" href="buy.css">
+  <style>
+    /* Quick styling for demonstration */
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header, footer { background: #2e7d32; color: white; padding: 10px 20px; }
+    nav a { color: white; margin-right: 15px; text-decoration: none; }
+    main { padding: 20px; }
+    .product-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
+    .no-products { font-style: italic; color: gray; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="logo">🌿 EcoFinds</h1>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="buy.html" class="active">Buy</a>
+      <a href="sell.html">Sell</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Available Products</h2>
+    <div id="product-list"></div>
+  </main>
+
+  <footer>
+    <p>🌿 EcoFinds &copy; 2025 | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    const productList = document.getElementById("product-list");
+
+    const renderProducts = () => {
+        const products = JSON.parse(localStorage.getItem("products")) || [];
+        productList.innerHTML = '';
+
+        if (products.length === 0) {
+            productList.innerHTML = '<p class="no-products">No available products.</p>';
+        } else {
+            products.forEach((product, index) => {
+                const card = document.createElement("div");
+                card.classList.add("product-card");
+
+                card.innerHTML = `
+    <a href="product-detail.html?index=${index}">
+        <h3>${product.name}</h3>
+        <p><strong>Description:</strong> ${product.description}</p>
+        <p><strong>Price:</strong> ₹${product.price}</p>
+        <p><strong>Category:</strong> ${product.category}</p>
+        <p><strong>Trade Option:</strong> ${product.trade}</p>
+        <p><strong>Seller:</strong> ${product.seller}</p>
+        <button class="buy-btn" data-index="${index}">Buy Now</button>
+    </a>
+`;
+                
+                productList.appendChild(card);
+            });
+            
+            attachBuyListeners();
+        }
+    };
+    
+    const attachBuyListeners = () => {
+        const buyButtons = document.querySelectorAll(".buy-btn");
+
+        buyButtons.forEach(button => {
+            button.addEventListener("click", (e) => {
+                const indexToRemove = e.target.dataset.index;
+                removeProduct(indexToRemove);
+            });
+        });
+    };
+
+    const removeProduct = (index) => {
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+        products.splice(index, 1);
+        localStorage.setItem("products", JSON.stringify(products));
+        
+        alert("🎉 Product purchased successfully!");
+        
+        renderProducts();
+    };
+
+    renderProducts();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoFinds - Product Detail</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-stone-50 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-green-700 text-white p-4 flex items-center shadow">
+    <button onclick="history.back()" class="mr-3 text-white hover:text-stone-200">
+      ⬅ Back
+    </button>
+    <h1 class="text-xl font-bold">Product Detail</h1>
+  </header>
+
+  <!-- Product Detail Container -->
+  <main class="flex-1 p-6 flex flex-col items-center">
+    <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-2xl">
+
+      <!-- Product Image -->
+      <div class="w-full h-64 bg-stone-200 flex items-center justify-center rounded-lg overflow-hidden">
+        <img src="https://via.placeholder.com/400" 
+             alt="Product Image" 
+             class="object-cover w-full h-full">
+      </div>
+
+      <!-- Product Info -->
+      <div class="mt-6 space-y-3">
+        <h2 class="text-2xl font-bold text-green-700">Sample Product Title</h2>
+        <p class="text-lg font-semibold text-stone-700">₹1200</p>
+        <p class="text-sm text-stone-500">Category: <span class="font-medium text-stone-700">Electronics</span></p>
+        <p class="text-stone-600">
+          This is a detailed description of the product. It explains condition, features, and why someone might want to buy it.
+        </p>
+
+        <!-- Owner Info -->
+        <div class="mt-4 p-3 border rounded-lg bg-stone-50">
+          <p class="text-sm text-stone-500">Seller:</p>
+          <p class="font-medium text-stone-700">John Doe</p>
+          <p class="text-xs text-stone-400">Reputation: ⭐⭐⭐⭐☆</p>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="mt-6 flex gap-4">
+        <button class="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-green-700 transition">
+          Add to Cart
+        </button>
+        <button class="flex-1 bg-emerald-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-emerald-600 transition">
+          Buy Now
+        </button>
+      </div>
+    </div>
+  </main>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const productIndex = urlParams.get('index');
+
+    if (productIndex !== null) {
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+        const product = products[productIndex];
+
+        if (product) {
+            document.querySelector('h2').textContent = product.name;
+            document.querySelector('.text-lg').textContent = `₹${product.price}`;
+            document.querySelector('.text-sm span').textContent = product.category;
+            document.querySelector('.text-stone-600').textContent = product.description;
+
+            // Update seller and placeholder image (if you have one)
+            const sellerInfo = document.querySelector('.mt-4 p.font-medium');
+            if (sellerInfo) {
+                sellerInfo.textContent = product.seller;
+            }
+
+            const productImage = document.querySelector('img');
+            if (productImage) {
+                // If the product has an image URL, use it. Otherwise, keep the placeholder.
+                if (product.imageUrl) {
+                    productImage.src = product.imageUrl;
+                }
+            }
+        } else {
+            document.querySelector('main').innerHTML = '<p class="text-center text-red-500">Product not found!</p>';
+        }
+    } else {
+        document.querySelector('main').innerHTML = '<p class="text-center text-red-500">No product selected.</p>';
+    }
+</script>
+
+</body>
+</html>
