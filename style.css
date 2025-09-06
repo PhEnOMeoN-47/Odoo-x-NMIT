@@ -1,0 +1,113 @@
+/* Background */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(120deg, #95d5b2, #40916c, #2d6a4f);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card */
+.auth-box {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2.5rem;
+  border-radius: 15px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: fadeIn 0.8s ease;
+}
+
+/* Logo */
+.logo {
+  font-size: 2.2rem;
+  color: #2d6a4f;
+  margin-bottom: 0.3rem;
+}
+
+.tagline {
+  color: #555;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* Inputs */
+form input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+form input:focus {
+  border-color: #40916c;
+  box-shadow: 0 0 5px rgba(64,145,108,0.4);
+}
+
+/* Button */
+.btn {
+  width: 95%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #40916c;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #2d6a4f;
+}
+
+/* Links */
+.switch, .guest {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.switch a, .guest a {
+  color: #2d6a4f;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.switch a:hover, .guest a:hover {
+  text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Make body take full height */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  /* Full screen height */
+}
+
+/* Main content grows to push footer down */
+main {
+  flex: 1;
+}
+
+/* Footer stays at bottom */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #2d6a4f;
+  color: white;
+  margin-top: auto; /* Pushes footer down */
+}

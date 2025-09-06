@@ -1,0 +1,134 @@
+/* General */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(120deg, #d8f3dc, #95d5b2, #74c69d);
+  color: #333;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #2d6a4f;
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+header .logo {
+  font-size: 1.5rem;
+}
+
+nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 5rem 2rem;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.hero-text {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: slideIn 1s ease;
+}
+
+.hero-text span {
+  color: #2d6a4f;
+  font-weight: bold;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #555;
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Buttons */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn {
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.buy-btn {
+  background: #40916c;
+}
+
+.buy-btn:hover {
+  background: #2d6a4f;
+}
+
+.sell-btn {
+  background: #f77f00;
+}
+
+.sell-btn:hover {
+  background: #d65a00;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #2d6a4f;
+  color: white;
+  margin-top: 3rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+/* Make body take full height */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  /* Full screen height */
+}
+
+/* Main content grows to push footer down */
+main {
+  flex: 1;
+}
+
+/* Footer stays at bottom */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #2d6a4f;
+  color: white;
+  margin-top: auto; /* Pushes footer down */
+}
+

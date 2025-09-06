@@ -1,0 +1,142 @@
+/* General */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f1fdf3;
+  color: #333;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #2d6a4f;
+  color: white;
+}
+
+header .logo {
+  font-size: 1.5rem;
+}
+
+nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a.active {
+  text-decoration: underline;
+}
+
+/* Form Section */
+.sell-form-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.sell-form-section h2 {
+  margin-bottom: 1.5rem;
+  color: #2d6a4f;
+}
+
+.sell-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sell-form label {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.sell-form input,
+.sell-form textarea,
+.sell-form select {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  resize: none;
+}
+
+.sell-form input:focus,
+.sell-form textarea:focus,
+.sell-form select:focus {
+  border-color: #2d6a4f;
+  outline: none;
+}
+
+/* Button */
+.submit-btn {
+  background: #40916c;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #2d6a4f;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #2d6a4f;
+  color: white;
+  margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .sell-form {
+    padding: 1.5rem;
+  }
+  .submit-btn {
+    font-size: 1rem;
+  }
+}
+/* Make body take full height */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  /* Full screen height */
+}
+
+/* Main content grows to push footer down */
+main {
+  flex: 1;
+}
+
+/* Footer stays at bottom */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #2d6a4f;
+  color: white;
+  margin-top: auto; /* Pushes footer down */
+}
